@@ -108,13 +108,25 @@ public class MainActivity extends AppCompatActivity {
 
             if (cellsCount == 0) {
                 setContentDescriptionAndTag(imageView, 1);
+            } if (cellsCount == 1) {
+                setContentDescriptionAndTag(imageView, 2);
+            }if (cellsCount == 5) {
+                setContentDescriptionAndTag(imageView, 4);
+            }if (cellsCount == 6) {
+                setContentDescriptionAndTag(imageView, 5);
+            } if (cellsCount == 11) {
+                setContentDescriptionAndTag(imageView, 7);
+            }if (cellsCount == 10) {
+                setContentDescriptionAndTag(imageView, 8);
+            }if (cellsCount == 15) {
+                setContentDescriptionAndTag(imageView, 12);
+            }if (cellsCount == 16) {
+                setContentDescriptionAndTag(imageView, 13);
             }
 
             imageView.setOnClickListener(v -> {
-                Log.d(MYLOG_TEG, imageView.getTag().toString());
                 //receiveClick(imageView);
                 Log.e(MYLOG_TEG, " imageView.getId() =  " + imageView.getId());
-                Log.e(MYLOG_TEG, " imageView.getDrawable() =  " + imageView.getDrawable());
 
                 int tag = (int) imageView.getTag();
                 if (selrktedPise == tag) {
@@ -126,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     if (this.witeSelCaunt == 0) {
                         this.buttonTmp.setVisibility(View.GONE);
                     }
+
 
                 }
 
