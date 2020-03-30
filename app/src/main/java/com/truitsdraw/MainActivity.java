@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(imageResource);
         imageView.setId(id);
-        imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
+        imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder_2));
         imageView.setClickable(true);
         linearLayout.addView(imageView);
         return imageView;
@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setSize(ImageView imageView) {
         Display display = getWindowManager().getDefaultDisplay();
-        imageView.getLayoutParams().height = (display.getWidth() * 18) / 100;
-        imageView.getLayoutParams().width = (display.getWidth() * 18) / 100;
+        imageView.getLayoutParams().height = (display.getWidth() * 18) / 95;
+        imageView.getLayoutParams().width = (display.getWidth() * 18) / 95;
     }
 
     private void setSizeButons(ImageView imageView) {
