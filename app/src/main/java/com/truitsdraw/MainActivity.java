@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.gridlayout.widget.GridLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -23,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private int batonsCaunter = 19;
     private int[] imageArey;
+    private LinearLayout.LayoutParams params;
+    private int selrktedPise;
+    private int witeSelCaunt = 12;
+    private Button buttonTmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void addButons() {
         while (batonsCaunter > 0) {
-            ImageView imageView = eadtogridlayout(linearLayout, imageArey[batonsCaunter -1], cellsCount);
-            imageView.requestLayout();
-            setSizeButons(imageView);
-            imageView.setOnClickListener(v -> {
-//                Log.e(MYLOG_TEG, imageView.getTag().toString());
-                //receiveClick(imageView);
-                Log.e(MYLOG_TEG, " imageView.getId() =  " + imageView.getId());
+            Button button = eadtoBatonlayout(linearLayout, imageArey[batonsCaunter - 1], batonsCaunter);
+            button.requestLayout();
+            setSizeButons(button);
+            button.setOnClickListener(v -> {
+//                Log.e(MYLOG_TEG, button.getTag().toString());
+                //receiveClick(button);
+                Log.e(MYLOG_TEG, " button.getId() =  " + button.getId());
+                selrktedPise = button.getId();
+                buttonTmp = findViewById(button.getId());
 
                 //TODO
             });
@@ -80,10 +90,44 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = eadtogridlayout(gridLayout, 0, cellsCount);
             imageView.requestLayout();
             setSize(imageView);
+
+            if (cellsCount == 2
+                    || cellsCount == 3
+                    || cellsCount == 4
+                    || cellsCount == 7
+                    || cellsCount == 8
+                    || cellsCount == 9
+                    || cellsCount == 12
+                    || cellsCount == 13
+                    || cellsCount == 14
+                    || cellsCount == 18
+                    || cellsCount == 19
+                    || cellsCount == 25) {
+                setContentDescriptionAndTag(imageView, 3);
+            }
+
+            if (cellsCount == 0) {
+                setContentDescriptionAndTag(imageView, 1);
+            }
+
             imageView.setOnClickListener(v -> {
-//                Log.e(MYLOG_TEG, imageView.getTag().toString());
+                Log.d(MYLOG_TEG, imageView.getTag().toString());
                 //receiveClick(imageView);
                 Log.e(MYLOG_TEG, " imageView.getId() =  " + imageView.getId());
+                Log.e(MYLOG_TEG, " imageView.getDrawable() =  " + imageView.getDrawable());
+
+                int tag = (int) imageView.getTag();
+                if (selrktedPise == tag) {
+                    imageView.setClickable(false);
+                    imageView.setImageDrawable(ContextCompat.getDrawable(this, imageArey[tag - 1]));
+                    this.witeSelCaunt --;
+                    Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt );
+
+                    if (this.witeSelCaunt == 0) {
+                        this.buttonTmp.setVisibility(View.GONE);
+                    }
+
+                }
 
                 //TODO
             });
@@ -96,25 +140,29 @@ public class MainActivity extends AppCompatActivity {
     private ImageView eadtogridlayout(GridLayout gridLayout, int imageResource, int id) {
         ImageView imageView = new ImageView(this);
         // imageView.setImageResource(imageResource);
-        imageView.setId(id);
+        imageView.setId(id + 20);
         imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
         imageView.setClickable(true);
         gridLayout.addView(imageView);
         return imageView;
     }
 
-    private ImageView eadtogridlayout(LinearLayout linearLayout, int imageResource, int id) {
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(imageResource);
-        imageView.setId(id);
-        imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder_2));
-        imageView.setClickable(true);
-        linearLayout.addView(imageView);
-        return imageView;
+    private Button eadtoBatonlayout(LinearLayout linearLayout, int imageResource, int id) {
+        Button button = new Button(this);
+        //button.setImageResource(imageResource);
+        button.setId(id);
+        button.setText(String.valueOf(id));
+        button.setTextColor(getResources().getColor(R.color.colorAccent));
+        button.setBackground(ContextCompat.getDrawable(this, imageResource));
+        button.setClickable(true);
+        params = new LinearLayout.LayoutParams(0, 0);
+        params.rightMargin = 10;
+        linearLayout.addView(button, params);
+        return button;
     }
 
-    private void setContentDescriptionAndTag(ImageView imageView, CharSequence noFlag) {
-        imageView.setContentDescription(noFlag);
+    private void setContentDescriptionAndTag(ImageView imageView, int noFlag) {
+        imageView.setTag(noFlag);
         Random rnd = new Random();
     }
 
@@ -124,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
         imageView.getLayoutParams().width = (display.getWidth() * 18) / 95;
     }
 
-    private void setSizeButons(ImageView imageView) {
+    private void setSizeButons(Button button) {
         Display display = getWindowManager().getDefaultDisplay();
-        imageView.getLayoutParams().height = (display.getWidth() * 18) / 70;
-        imageView.getLayoutParams().width = (display.getWidth() * 18) / 70;
+        button.getLayoutParams().height = (display.getWidth() * 18) / 100;
+        button.getLayoutParams().width = (display.getWidth() * 18) / 100;
     }
 }

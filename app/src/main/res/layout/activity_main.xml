@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/blak_boder_2"
         app:layout_constraintGuide_begin="51dp" />
 
     <androidx.gridlayout.widget.GridLayout
@@ -41,16 +42,17 @@
         app:layout_constraintGuide_begin="530dp" />
 
     <HorizontalScrollView
+        android:background="@drawable/blak_boder_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GridLayout">
+        app:layout_constraintTop_toBottomOf="@+id/guideline3">
 
         <LinearLayout
             android:id="@+id/butons_LinearLayout"
@@ -58,5 +60,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
     </HorizontalScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="562dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
