@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                     || cellsCount == 19
                     || cellsCount == 25) {
                 setContentDescriptionAndTag(button, 3);
-            }else if (cellsCount == 0) {
+
+            } else if (cellsCount == 0) {
                 setContentDescriptionAndTag(button, 1);
             } else if (cellsCount == 1) {
                 setContentDescriptionAndTag(button, 2);
@@ -110,35 +111,35 @@ public class MainActivity extends AppCompatActivity {
                 setContentDescriptionAndTag(button, 5);
             } else if (cellsCount == 6) {
                 setContentDescriptionAndTag(button, 4);
-            }else if (cellsCount == 11) {
+            } else if (cellsCount == 11) {
                 setContentDescriptionAndTag(button, 7);
-            }else if (cellsCount == 10) {
+            } else if (cellsCount == 10) {
                 setContentDescriptionAndTag(button, 6);
-            }else if (cellsCount == 15) {
+            } else if (cellsCount == 15) {
                 setContentDescriptionAndTag(button, 8);
-            }else if (cellsCount == 16) {
+            } else if (cellsCount == 16) {
                 setContentDescriptionAndTag(button, 9);
-            }else if (cellsCount == 17) {
+            } else if (cellsCount == 17) {
                 setContentDescriptionAndTag(button, 10);
-            }else if (cellsCount == 20) {
+            } else if (cellsCount == 20) {
                 setContentDescriptionAndTag(button, 11);
-            }else if (cellsCount == 21) {
+            } else if (cellsCount == 21) {
                 setContentDescriptionAndTag(button, 12);
-            }else if (cellsCount == 22) {
+            } else if (cellsCount == 22) {
                 setContentDescriptionAndTag(button, 13);
-            }else if (cellsCount == 23) {
+            } else if (cellsCount == 23) {
                 setContentDescriptionAndTag(button, 14);
-            }else if (cellsCount == 24) {
+            } else if (cellsCount == 24) {
                 setContentDescriptionAndTag(button, 15);
-            }else if (cellsCount == 26) {
+            } else if (cellsCount == 26) {
                 setContentDescriptionAndTag(button, 16);
-            }else if (cellsCount == 27) {
+            } else if (cellsCount == 27) {
                 setContentDescriptionAndTag(button, 17);
-            }else if (cellsCount == 28) {
+            } else if (cellsCount == 28) {
                 setContentDescriptionAndTag(button, 18);
-            }else if (cellsCount == 29) {
+            } else if (cellsCount == 29) {
                 setContentDescriptionAndTag(button, 19);
-            }else {
+            } else {
                 button.setText(String.valueOf(cellsCount));
                 button.setTextColor(getResources().getColor(R.color.colorAccent));
             }
@@ -166,35 +167,47 @@ public class MainActivity extends AppCompatActivity {
         if (selrktedPise == tag) {
             imageView.setClickable(false);
             imageView.setBackgroundResource(imageArey[tag - 1]);
+            imageView.setText("");
 
             if (tag == 3) {
                 this.witeSelCaunt = this.witeSelCaunt--;
             } else if (witeSelCaunt == 0) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-
-            if (tag == 1) {
+            } else if (tag == 1) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 2) {
+            } else if (tag == 2) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 5) {
+            } else if (tag == 5) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 4) {
+            } else if (tag == 4) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 7) {
+            } else if (tag == 7) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 6) {
+            } else if (tag == 6) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 8) {
+            } else if (tag == 8) {
                 buttonTmp.setVisibility(View.GONE);
-            }
-            if (tag == 9) {
+            } else if (tag == 9) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 10) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 11) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 12) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 13) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 14) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 15) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 16) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 17) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 18) {
+                buttonTmp.setVisibility(View.GONE);
+            } else if (tag == 19) {
                 buttonTmp.setVisibility(View.GONE);
             }
             Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt);
@@ -206,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
     private Button eadtogridlayout(GridLayout gridLayout, int id) {
         Button button = new Button(this);
         // button.setImageResource(imageResource);
-        button.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
+        button.setBackgroundColor(getResources().getColor(R.color.onColor));
         button.setClickable(true);
         gridLayout.addView(button);
         return button;
