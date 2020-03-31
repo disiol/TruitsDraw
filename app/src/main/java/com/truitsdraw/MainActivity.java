@@ -165,14 +165,14 @@ public class MainActivity extends AppCompatActivity {
         Log.e(MYLOG_TEG, " imageView.getTag() =  " + imageView.getTag());
 
         if (selrktedPise == tag) {
-            imageView.setClickable(false);
-            imageView.setBackgroundResource(imageArey[tag - 1]);
-            imageView.setText("");
+            this.witeSelCaunt--;
+
 
             if (tag == 3) {
                 this.witeSelCaunt = this.witeSelCaunt--;
-            } else if (witeSelCaunt == 0) {
-                buttonTmp.setVisibility(View.GONE);
+                if (witeSelCaunt == 0) {
+                    buttonTmp.setVisibility(View.GONE);
+                }
             } else if (tag == 1) {
                 buttonTmp.setVisibility(View.GONE);
             } else if (tag == 2) {
@@ -210,6 +210,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (tag == 19) {
                 buttonTmp.setVisibility(View.GONE);
             }
+
+
+            imageView.setClickable(false);
+            imageView.setBackgroundResource(imageArey[tag - 1]);
+            imageView.setText("");
             Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt);
 
 
