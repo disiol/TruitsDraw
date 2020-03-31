@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.gridlayout.widget.GridLayout;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -87,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void schowBord(GridLayout gridLayout) {
         while (cellsCount < 30) {
-            ImageView imageView = eadtogridlayout(gridLayout, 0, cellsCount);
-            imageView.requestLayout();
-            setSize(imageView);
+            Button button = eadtogridlayout(gridLayout, cellsCount);
+            button.requestLayout();
+            setSize(button);
 
             if (cellsCount == 2
                     || cellsCount == 3
@@ -103,34 +101,34 @@ public class MainActivity extends AppCompatActivity {
                     || cellsCount == 18
                     || cellsCount == 19
                     || cellsCount == 25) {
-                setContentDescriptionAndTag(imageView, 3);
+                setContentDescriptionAndTag(button, 3);
             }
 
             if (cellsCount == 0) {
-                setContentDescriptionAndTag(imageView, 1);
+                setContentDescriptionAndTag(button, 1);
             } if (cellsCount == 1) {
-                setContentDescriptionAndTag(imageView, 2);
+                setContentDescriptionAndTag(button, 2);
             }if (cellsCount == 5) {
-                setContentDescriptionAndTag(imageView, 4);
+                setContentDescriptionAndTag(button, 5);
             }if (cellsCount == 6) {
-                setContentDescriptionAndTag(imageView, 5);
+                setContentDescriptionAndTag(button, 4);
             } if (cellsCount == 11) {
-                setContentDescriptionAndTag(imageView, 7);
+                setContentDescriptionAndTag(button, 7);
             }if (cellsCount == 10) {
-                setContentDescriptionAndTag(imageView, 8);
+                setContentDescriptionAndTag(button, 6);
             }if (cellsCount == 15) {
-                setContentDescriptionAndTag(imageView, 12);
+                setContentDescriptionAndTag(button, 8);
             }if (cellsCount == 16) {
-                setContentDescriptionAndTag(imageView, 13);
+                setContentDescriptionAndTag(button, 9);
             }
 
-            imageView.setOnClickListener(v -> {
-                //receiveClick(imageView);
-                Log.e(MYLOG_TEG, " imageView.getId() =  " + imageView.getId());
+            button.setOnClickListener(v -> {
+                //receiveClick(button);
+                Log.e(MYLOG_TEG, " button.getId() =  " + button.getId());
 
-                if (imageView.getTag() != null) {
-                    int tag = (int) imageView.getTag();
-                    showPises(imageView, tag);
+                if (button.getTag() != null) {
+                    int tag = (int) button.getTag();
+                    showPises(button, tag);
                 }
 
                 //TODO
@@ -141,30 +139,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showPises(ImageView imageView, int tag) {
+    private void showPises(Button imageView, int tag) {
         Log.e(MYLOG_TEG, " imageView.getTag() =  " + imageView.getTag());
 
         if (selrktedPise == tag) {
             imageView.setClickable(false);
-            imageView.setImageDrawable(ContextCompat.getDrawable(this, imageArey[tag - 1]));
-            this.witeSelCaunt --;
+            imageView.setBackgroundResource( imageArey[tag - 1]);
+            if (tag == 3) {
+                this.witeSelCaunt --;
+                buttonTmp.setVisibility(View.GONE);
+            }
             Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt );
 
-            if (this.witeSelCaunt == 0) {
-                this.buttonTmp.setVisibility(View.GONE);
-            }
+
 
 
         }
     }
 
-    private ImageView eadtogridlayout(GridLayout gridLayout, int imageResource, int id) {
-        ImageView imageView = new ImageView(this);
-        // imageView.setImageResource(imageResource);
-        imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
-        imageView.setClickable(true);
-        gridLayout.addView(imageView);
-        return imageView;
+    private Button eadtogridlayout(GridLayout gridLayout, int id) {
+        Button button = new Button(this);
+        // button.setImageResource(imageResource);
+
+        button.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
+        button.setClickable(true);
+        gridLayout.addView(button);
+        return button;
     }
 
     private Button eadtoBatonlayout(LinearLayout linearLayout, int imageResource, int id) {
@@ -175,18 +175,21 @@ public class MainActivity extends AppCompatActivity {
         button.setTextColor(getResources().getColor(R.color.colorAccent));
         button.setBackground(ContextCompat.getDrawable(this, imageResource));
         button.setClickable(true);
+        button.getBackground();
         params = new LinearLayout.LayoutParams(0, 0);
         params.rightMargin = 10;
         linearLayout.addView(button, params);
         return button;
     }
 
-    private void setContentDescriptionAndTag(ImageView imageView, int noFlag) {
-        imageView.setTag(noFlag);
-        Random rnd = new Random();
+    private void setContentDescriptionAndTag(Button button, int teg) {
+        button.setTag(teg);
+        button.setText(String.valueOf(teg));
+        button.setTextColor(getResources().getColor(R.color.colorAccent));
+
     }
 
-    private void setSize(ImageView imageView) {
+    private void setSize(Button imageView) {
         Display display = getWindowManager().getDefaultDisplay();
         imageView.getLayoutParams().height = (display.getWidth() * 18) / 95;
         imageView.getLayoutParams().width = (display.getWidth() * 18) / 95;
