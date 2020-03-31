@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int selrktedPise;
     private int witeSelCaunt = 12;
     private Button buttonTmp;
+    private int textSize = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,9 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 setContentDescriptionAndTag(button, 18);
             } else if (cellsCount == 29) {
                 setContentDescriptionAndTag(button, 19);
-            } else {
-                button.setText(String.valueOf(cellsCount));
-                button.setTextColor(getResources().getColor(R.color.colorAccent));
             }
 
             button.setOnClickListener(v -> {
@@ -165,10 +163,10 @@ public class MainActivity extends AppCompatActivity {
         Log.e(MYLOG_TEG, " imageView.getTag() =  " + imageView.getTag());
 
         if (selrktedPise == tag) {
-            this.witeSelCaunt--;
 
 
             if (tag == 3) {
+                this.witeSelCaunt--;
                 this.witeSelCaunt = this.witeSelCaunt--;
                 if (witeSelCaunt == 0) {
                     buttonTmp.setVisibility(View.GONE);
@@ -236,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         button.setId(id);
         button.setText(String.valueOf(id));
         button.setTextColor(getResources().getColor(R.color.colorAccent));
+        button.setTextSize(textSize);
         button.setBackground(ContextCompat.getDrawable(this, imageResource));
         button.setClickable(true);
         button.getBackground();
@@ -248,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
     private void setContentDescriptionAndTag(Button button, int teg) {
         button.setTag(teg);
         button.setText(String.valueOf(teg));
+        button.setTextSize(textSize);
         button.setTextColor(getResources().getColor(R.color.colorAccent));
 
     }
