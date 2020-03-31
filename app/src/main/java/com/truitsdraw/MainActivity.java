@@ -128,18 +128,9 @@ public class MainActivity extends AppCompatActivity {
                 //receiveClick(imageView);
                 Log.e(MYLOG_TEG, " imageView.getId() =  " + imageView.getId());
 
-                int tag = (int) imageView.getTag();
-                if (selrktedPise == tag) {
-                    imageView.setClickable(false);
-                    imageView.setImageDrawable(ContextCompat.getDrawable(this, imageArey[tag - 1]));
-                    this.witeSelCaunt --;
-                    Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt );
-
-                    if (this.witeSelCaunt == 0) {
-                        this.buttonTmp.setVisibility(View.GONE);
-                    }
-
-
+                if (imageView.getTag() != null) {
+                    int tag = (int) imageView.getTag();
+                    showPises(imageView, tag);
                 }
 
                 //TODO
@@ -150,10 +141,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showPises(ImageView imageView, int tag) {
+        Log.e(MYLOG_TEG, " imageView.getTag() =  " + imageView.getTag());
+
+        if (selrktedPise == tag) {
+            imageView.setClickable(false);
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, imageArey[tag - 1]));
+            this.witeSelCaunt --;
+            Log.e(MYLOG_TEG, " witeSelCaunt =  " + this.witeSelCaunt );
+
+            if (this.witeSelCaunt == 0) {
+                this.buttonTmp.setVisibility(View.GONE);
+            }
+
+
+        }
+    }
+
     private ImageView eadtogridlayout(GridLayout gridLayout, int imageResource, int id) {
         ImageView imageView = new ImageView(this);
         // imageView.setImageResource(imageResource);
-        imageView.setId(id + 20);
         imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.blak_boder));
         imageView.setClickable(true);
         gridLayout.addView(imageView);
