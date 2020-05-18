@@ -9,14 +9,11 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.util.Random;
 
 import static com.truitsdraw.constants.Constants.MYLOG_TEG;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private final int higt = 5;
     private final int wigt = 6;
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.game_main);
         gridLayout = findViewById(R.id.GridLayout);
         linearLayout = findViewById(R.id.butons_LinearLayout);
 
@@ -70,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
             Button button = eadtoBatonlayout(linearLayout, imageArey[batonsCaunter - 1], batonsCaunter);
             button.requestLayout();
             setSizeButons(button);
+
             button.setOnClickListener(v -> {
-//                Log.e(MYLOG_TEG, button.getTag().toString());
-                //receiveClick(button);
+
                 Log.e(MYLOG_TEG, " button.getId() =  " + button.getId());
                 selrktedPise = button.getId();
                 buttonTmp = findViewById(button.getId());
